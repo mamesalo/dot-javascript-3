@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ......................................... -->
+    <!-- 1 question -->
+    <!-- ......................................... -->
+    <h4>
+      1. Write a JavaScript program to compute the sum of the two given
+      integers, If the two values are the same, then return triple their sum.
+    </h4>
+    <div style="display: flex; gap: 5px">
+      <input type="number" placeholder="Enter a Number" name="" id="t1-num1" />
+      <input type="number" placeholder="Enter a Number" name="" id="t1-num2" />
+      <button onclick="calculateSum()">Calculate Sum</button>
+    </div>
+    <p id="t1-error" style="color: red"></p>
+    <p id="t1-triple"></p>
+    <p id="t1-result"></p>
+    <!-- ......................................... -->
+    <!-- 2 question -->
+    <!-- ......................................... -->
+    <h4>
+      2.Write a JavaScript program where the program takes a random integer
+      between 1 and 10, and the user is then prompted to input a guess number.
+      The program displays a message "Good Work" if the input matches the guess
+      number otherwise "Not matched".
+    </h4>
+    <div style="display: flex; gap: 5px">
+      <input
+        type="number"
+        placeholder="Enter a Number between 1 - 10"
+        name=""
+        id="t2-num"
+        style="width: 230px"
+        maxlength="2"
+      />
+      <button onclick="guess()">Guess</button>
+    </div>
+    <p id="t2-error" style="color: red"></p>
+    <p id="t2-random-num"></p>
+    <p id="t2-result"></p>
+    <!-- ......................................... -->
+    <!-- 3 question -->
+    <!-- ......................................... -->
+    <h4>
+      3. Write a JavaScript program to check whether two given integer values
+      are in the range 50.99 (inclusive). Return true if either of them falls
+      within the range.
+    </h4>
+    <div style="display: flex; gap: 5px">
+      <input type="number" placeholder="Enter a Number" id="t3-num1" />
+      <input type="number" placeholder="Enter a Number" id="t3-num2" />
+      <button onclick="checkRange()">Check</button>
+    </div>
+    <p id="t3-error" style="color: red"></p>
+    <p id="t3-result"></p>
+    <!-- ......................................... -->
+    <!-- 4 question -->
+    <!-- ......................................... -->
+    <h4>
+      4. Write a JavaScript program to find the closest value to 100 from two
+      numerical values.
+    </h4>
+    <div style="display: flex; gap: 5px">
+      <input type="number" placeholder="Enter a Number" id="t4-num1" />
+      <input type="number" placeholder="Enter a Number" id="t4-num2" />
+      <button onclick="findClosest()">Check</button>
+    </div>
+    <p id="t4-error" style="color: red"></p>
+    <p id="t4-result"></p>
+    <h4>
+      5. Write a JavaScript program to add items to a blank array and display
+      them.
+    </h4>
+    <div style="display: flex; gap: 5px">
+      <input type="number" placeholder="Enter a Number" id="t5-num" />
+      <button onclick="add()">Add</button>
+      <button onclick="display()">Display</button>
+    </div>
+    <p id="t5-error" style="color: red"></p>
+    <ul id="item-list"></ul>
+  </body>
+  <script>
+    let itemsArray = [];
+    function calculateSum() {
+      const num1 = document.getElementById("t1-num1");
+      const num2 = document.getElementById("t1-num2");
+
+      if (num1.value.length == 0 || num2.value.length == 0) {
+        document.getElementById("t1-error").innerHTML =
+          "pls enter all input fields";
+        return;
+      }
+      document.getElementById("t1-error").innerHTML = "";
+      let result = parseInt(num1.value) + parseInt(num2.value);
+      if (num1.value == num2.value) {
+        result *= 3;
+        document.getElementById("t1-triple").innerHTML =
+          "The two entered number are equal the triple of the sum will be shown";
+        document.getElementById("t1-result").innerHTML = "Sum = " + result;
+      } else {
+        document.getElementById("t1-triple").innerHTML = "";
+        document.getElementById("t1-result").innerHTML = "Sum = " + result;
+      }
+    }
+    function guess() {
+      const randomNum = Math.floor(Math.random() * 10) + 1;
+      const num = document.getElementById("t2-num");
+      if (num.value.length == 0) {
+        document.getElementById("t2-error").innerHTML = "pls enter a number";
+        return;
+      }
+      document.getElementById("t2-error").innerHTML = "";
+      if (num.value == randomNum) {
+        document.getElementById("t2-result").innerHTML = "Good Work👌";
+      } else {
+        document.getElementById("t2-result").innerHTML =
+          " Not matched try again 😣";
+      }
+      document.getElementById("t2-random-num").innerHTML =
+        "The Random number: " + randomNum;
+    }
+    function checkRange() {
+      const num1 = document.getElementById("t3-num1");
+      const num2 = document.getElementById("t3-num2");
+      const range = 50.99;
+      if (num1.value.length == 0 || num2.value.length == 0) {
+        document.getElementById("t3-error").innerHTML =
+          "pls enter all input fields";
+        return;
+      }
+      document.getElementById("t3-error").innerHTML = "";
+      if (parseFloat(num1.value) <= range && parseFloat(num2.value) <= range) {
+        document.getElementById("t3-result").innerHTML =
+          "result = " + true + "✅";
+      } else {
+        document.getElementById("t3-result").innerHTML =
+          "result = " + false + "❌";
+      }
+    }
+    function findClosest() {
+      const num1 = document.getElementById("t4-num1");
+      const num2 = document.getElementById("t4-num2");
+
+      if (num1.value.length == 0 || num2.value.length == 0) {
+        document.getElementById("t4-error").innerHTML =
+          "pls enter all input fields";
+        return;
+      }
+
+      const x = Math.abs(100 - parseFloat(num1.value));
+      const y = Math.abs(100 - parseFloat(num2.value));
+      if (x == y) {
+        document.getElementById("t4-result").innerHTML =
+          "both number are equal";
+      } else if (x > y) {
+        document.getElementById("t4-result").innerHTML =
+          "Number " + num1.value + " is closest value to 100";
+      } else {
+        document.getElementById("t4-result").innerHTML =
+          "Number " + num2.value + " is closest value to 100";
+      }
+      const value = document.getElementById("text1").value;
+      const str = value.substr(1, value.length - 2);
+
+      document.getElementById("string").innerHTML = str;
+    }
+    function add() {
+      const num = document.getElementById("t5-num");
+      if (num.value.length == 0) {
+        document.getElementById("t5-error").innerHTML = "pls enter a number";
+        return;
+      }
+      document.getElementById("t5-error").innerHTML = "";
+      itemsArray.push(num.value);
+      num.value = "";
+    }
+    function display() {
+      const itemList = document.getElementById("item-list");
+      itemList.innerHTML = "";
+
+      // Loop through the array and create list items
+      itemsArray.forEach(function (item, index) {
+        const listItem = document.createElement("li");
+        listItem.textContent = `Element ${index + 1} =  ${item}`;
+        itemList.appendChild(listItem);
+      });
+    }
+  </script>
+</html>
